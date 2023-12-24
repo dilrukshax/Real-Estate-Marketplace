@@ -21,6 +21,9 @@ function Header() {
           <li className='text-slate-500 hover:text-slate-700'>Home</li>
           </Link>
           <Link to='/sign-up' >
+          <li className='text-slate-500 hover:text-slate-700'>Sign up</li>
+          </Link>
+          <Link to='/sign-in' >
           <li className='text-slate-500 hover:text-slate-700'>Sign In</li>
           </Link>
           <Link to='/about' >
