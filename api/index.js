@@ -13,6 +13,8 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 
+// Connect to MongoDB
+
 mongoose.connect(process.env.MONGODB_URI).then(() => {
     console.log('Connected to MongoDB!');
     }
@@ -21,12 +23,14 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
     }
 );
 
-
+// Start the server
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000!');
     }
 );
+
+// Routes
 
 app.use('/api/user', userRoute);
 app.use('/api/auth', authRoute);

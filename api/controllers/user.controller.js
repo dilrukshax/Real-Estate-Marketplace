@@ -9,6 +9,8 @@ export const test = (req, res) => {
   });
 };
 
+// update user controller function to update a user in the database 
+
 export const updateUser = async (req, res, next) => {
 
 
@@ -45,6 +47,8 @@ export const updateUser = async (req, res, next) => {
     next(error);
   }
 }; 
+
+// delete user controller function to delete a user in the database
 
 
 export const deleteUser = async (req, res, next) => {

@@ -16,6 +16,8 @@ function SignUp() {
       setFormData({ ...formData, [e.target.id]: e.target.value });
     }
   };
+
+  // Handle form submit
   
   const handleSubmit =  async(e) => {
     e.preventDefault();

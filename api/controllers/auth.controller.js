@@ -4,6 +4,8 @@ import { errorhandler } from "../utils/error.js";
 import jwt from "jsonwebtoken";
 
 
+// signup controller function to create a new user in the database and return a success message 
+
 export const signup = async (req, res, next) => {
   const { name, email, contact, gender, username, password } = req.body;
   const hashedPassword = await bcryptjs.hash(password, 10);
@@ -22,6 +24,8 @@ export const signup = async (req, res, next) => {
     next(error);
   }
 };
+
+// signin controller function to authenticate a user and return a success message
 
 export const signin = async (req, res, next) => {
   const { username, password } = req.body;
@@ -47,11 +51,13 @@ export const signin = async (req, res, next) => {
 
 };
 
+// google controller function to authenticate a user using google and return a success message
+
 export const google = async (req, res, next) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (user) {
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
       const { password: userPassword, ...rest } = user._doc;
       res
         .cookie('access_token', token, { httpOnly: true })
@@ -72,7 +78,7 @@ export const google = async (req, res, next) => {
         avatar: req.body.photo,
       });
       await newUser.save();
-      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
+      const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET);
       const { password: userPassword, ...rest } = newUser._doc;
       res
         .cookie('access_token', token, { httpOnly: true })
@@ -82,7 +88,18 @@ export const google = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+};
 
+// signout controller function to clear the cookie and return a success message
+
+export const signout = (req, res, next) => {
+  try {
+    res.clearCookie('access_token');
+    res.status(200).json({ message: "Signout successful" });
+    
+  } catch (error) {
+    next(error);
+  }
 };
 
 

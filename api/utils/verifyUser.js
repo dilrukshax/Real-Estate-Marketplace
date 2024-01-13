@@ -1,3 +1,5 @@
+// Desc: Middleware to verify user token
+
 import jwt from 'jsonwebtoken';
 import { errorhandler } from './error.js';
 
