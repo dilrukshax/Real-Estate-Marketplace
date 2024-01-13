@@ -7,7 +7,15 @@ import {
   getDownloadURL,
 } from "firebase/storage"
 import { app } from "../firebase"
-import { updateUserStart, updateUserSuccess, updateUserFailure } from "../redux/user/userSlice"
+import {
+  updateUserStart,
+  updateUserSuccess,
+  updateUserFailure,
+  deleteUserFailure,
+  deleteUserSuccess,
+  deleteUserStart,
+
+} from "../redux/user/userSlice"
 import { useDispatch } from "react-redux"
 
 
@@ -21,7 +29,7 @@ function Profile() {
   const [formData, setFormData] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const dispatch = useDispatch();
-  
+
 
 
   useEffect(() => {
@@ -67,7 +75,7 @@ function Profile() {
     e.preventDefault()
     try {
       dispatch(updateUserStart());
-      const res = await fetch(`/api/user/update/${currentUser.id}`, {
+      const res = await fetch(`/api/user/update/${currentUser._id}`, {
 
         method: 'POST',
         headers: {
@@ -83,6 +91,23 @@ function Profile() {
       dispatch(updateUserSuccess(data));
       setUpdateSuccess(true);
 
+    } catch (error) {
+      dispatch(updateUserFailure(error.message));
+    }
+  }
+
+  const handleDeleteUser = async () => {
+    try {
+      dispatch(deleteUserStart());
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(updateUserFailure(data.message));
+        return;
+      }
+      dispatch(deleteUserSuccess(data));
     } catch (error) {
       dispatch(updateUserFailure(error.message));
     }
@@ -181,7 +206,7 @@ function Profile() {
         </button>
       </form>
       <div className="flex justify-between mt-5">
-        <span className="text-red-500 cursor-pointer">Delete Account</span>
+        <span onClick={handleDeleteUser} className="text-red-500 cursor-pointer">Delete Account</span>
         <span className="text-red-500 cursor-pointer">Sing out</span>
       </div>
       <p className="text-green-500 text-center mt-5">{updateSuccess ? 'Profile updated successfully' : ''}</p>

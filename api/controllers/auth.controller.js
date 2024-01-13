@@ -28,11 +28,15 @@ export const signin = async (req, res, next) => {
   try {
     const validUser = await User.findOne({ username });
     if (!validUser) return next(errorhandler(401, "Username not found"));
+
     const validPassword = bcryptjs.compareSync(password, validUser.password);
     if (!validPassword) return next(errorhandler(405, "Invalid password"));
+    
     const token = jwt.sign({ userId: validUser._id }, process.env.JWT_SECRET);
+
+
     const { password: userPassword, ...rest } = validUser._doc;
-    res.cookie("token", token, { httpOnly: true })
+    res.cookie('access_token', token, { httpOnly: true })
       .status(200)
       .json(validUser);
 
