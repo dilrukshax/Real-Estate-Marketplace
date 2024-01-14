@@ -1,5 +1,3 @@
-Certainly! I've incorporated your installation guide into the README. Please ensure that the users have Node.js and npm installed before proceeding.
-
 # Awesome Real Estate Marketplace.
 
 ## Description
