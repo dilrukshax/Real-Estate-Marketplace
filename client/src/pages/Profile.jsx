@@ -272,15 +272,7 @@ function Profile() {
           className='bg-slate-700 text-white p-3 rounded-lg my-2 uppercase hover:opacity-45 disabled:opacity-30'>
           {loading ? 'Loading...' : 'Update'}
         </button>
-        <Link
-          to={"/create-listing"}
-          className='bg-green-700 text-white p-3 rounded-lg my-2 uppercase hover:opacity-45 disabled:opacity-30 text-center'
-
-        >
-          Create Listing
-        </Link>
-      </form>
-      <div className="flex justify-between mt-5">
+        <div className="flex justify-between mt-5">
         <span
           onClick={handleDeleteUser}
           className="text-red-700 cursor-pointer"
@@ -294,6 +286,15 @@ function Profile() {
           Sing out
         </span>
       </div>
+        <Link
+          to={"/create-listing"}
+          className='bg-green-700 text-white p-3 rounded-lg my-2 uppercase hover:opacity-45 disabled:opacity-30 text-center'
+
+        >
+          Create Listing
+        </Link>
+      </form>
+      
       <p className="text-green-700 text-center mt-5">{updateSuccess ? 'Profile updated successfully' : ''}</p>
       <p className="text-red-700 text-center mt-5">{error ? error : ''}</p>
       <button
