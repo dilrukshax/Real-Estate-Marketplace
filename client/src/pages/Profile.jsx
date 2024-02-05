@@ -164,6 +164,24 @@ function Profile() {
 
   }
 
+  // Handle delete listing
+
+  const handleListingDelete = async (listingId) => {
+    try {
+      const res = await fetch(`/api/listing/delete/${listingId}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        console.log(data.message);
+        return;
+      }
+      setUserListings((prev) => prev.filter((listing) => listing._id !== listingId));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
@@ -287,10 +305,10 @@ function Profile() {
       </button>
       <p className="text-red-700 text-center mt-5">{showListingsError ? 'Error fetching listings' : ''}</p>
       <div className="flex flex-col gap-4">
-        <h1 className="text-3xl font-semibold text-center my-7">Your Listings</h1>
-        {userListings && userListings.length > 0 &&
-
+      {/* <h1 className="text-3xl font-semibold text-center my-7">Your Listings</h1> */}
+        {userListings && userListings.length > 0 &&          
           userListings.map((listing) => (
+            
             <div key={listing._id} className="bg-slate-100 p-3 rounded-lg my-2 gap-4">
               <Link to={`/listing/${listing._id}`}>
                 <img src={listing.imageUrls[0]} alt={listing.title} className="w-full h-40 object-cover" />
@@ -298,12 +316,12 @@ function Profile() {
               <Link to={`/listing/${listing._id}`}>
                 <p className="text-slate-700 font-semibold">{listing.title}</p>
               </Link>
-              <p className="text-slate-700 font-semibold">{listing.price}</p>
+              <p className="text-slate-700 font-semibold">Pr:{listing.regularPrice}</p>
               <p className="text-slate-700 font-semibold">{listing.location}</p>
 
               <div className="flex justify-between">
-                <Link to={`/edit-listing/${listing._id}`} className="text-green-700">Edit</Link>
-                <Link to={`/delete-listing/${listing._id}`} className="text-red-700">Delete</Link>
+                <button  className="text-green-700">Edit</button >
+                <button  onClick={()=> handleListingDelete(listing._id)} className="text-red-700">Delete</button>
               </div>
             </div>
           ))}
