@@ -320,7 +320,9 @@ function Profile() {
               <p className="text-slate-700 font-semibold">{listing.location}</p>
 
               <div className="flex justify-between">
+                <Link to={`/update-listing/${listing._id}`} >
                 <button  className="text-green-700">Edit</button >
+                </Link>
                 <button  onClick={()=> handleListingDelete(listing._id)} className="text-red-700">Delete</button>
               </div>
             </div>
