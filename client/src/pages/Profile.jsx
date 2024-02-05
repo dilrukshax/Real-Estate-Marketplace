@@ -21,6 +21,7 @@ import {
 } from "../redux/user/userSlice"
 import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
+import { set } from "mongoose"
 
 
 
@@ -32,9 +33,9 @@ function Profile() {
   const [fileUploadError, setFileUploadError] = useState(false);
   const [formData, setFormData] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
+  const [showListingsError, setShowListingsError] = useState(false);
+  const [userListings, setUserListings] = useState([]);
   const dispatch = useDispatch();
-
-
 
   useEffect(() => {
     if (file) {
@@ -143,6 +144,25 @@ function Profile() {
     }
   }
 
+  // Handle show listings
+
+  const handleShowListings = async () => {
+    try {
+      setShowListingsError(false);
+      const res = await fetch(`/api/user/listings/${currentUser._id}`);
+      const data = await res.json();
+      if (data.success === false) {
+        setShowListingsError(true);
+        return;
+      }
+      setUserListings(data);
+      console.log(data);
+
+    } catch (error) {
+      setShowListingsError(true);
+    }
+
+  }
 
   return (
     <div className="p-3 max-w-lg mx-auto">
@@ -231,12 +251,12 @@ function Profile() {
         />
         <button
           disabled={loading}
-          className='bg-slate-500 text-white p-3 rounded-lg my-2 uppercase hover:opacity-45 disabled:opacity-30'>
+          className='bg-slate-700 text-white p-3 rounded-lg my-2 uppercase hover:opacity-45 disabled:opacity-30'>
           {loading ? 'Loading...' : 'Update'}
         </button>
         <Link
           to={"/create-listing"}
-          className='bg-green-500 text-white p-3 rounded-lg my-2 uppercase hover:opacity-45 disabled:opacity-30 text-center'
+          className='bg-green-700 text-white p-3 rounded-lg my-2 uppercase hover:opacity-45 disabled:opacity-30 text-center'
 
         >
           Create Listing
@@ -245,19 +265,52 @@ function Profile() {
       <div className="flex justify-between mt-5">
         <span
           onClick={handleDeleteUser}
-          className="text-red-500 cursor-pointer"
+          className="text-red-700 cursor-pointer"
         >
           Delete Account
         </span>
         <span
           onClick={handleSignOut}
-          className="text-red-500 cursor-pointer"
+          className="text-red-700 cursor-pointer"
         >
           Sing out
         </span>
       </div>
-      <p className="text-green-500 text-center mt-5">{updateSuccess ? 'Profile updated successfully' : ''}</p>
-      <p className="text-red-500 text-center mt-5">{error ? error : ''}</p>
+      <p className="text-green-700 text-center mt-5">{updateSuccess ? 'Profile updated successfully' : ''}</p>
+      <p className="text-red-700 text-center mt-5">{error ? error : ''}</p>
+      <button
+        onClick={handleShowListings}
+        className="w-full bg-green-700 text-white p-3 rounded-lg my-2 uppercase hover:opacity-45 disabled:opacity-30">
+        <Link to="/listings">
+          View Listings
+        </Link>
+      </button>
+      <p className="text-red-700 text-center mt-5">{showListingsError ? 'Error fetching listings' : ''}</p>
+      <div className="flex flex-col gap-4">
+        <h1 className="text-3xl font-semibold text-center my-7">Your Listings</h1>
+        {userListings && userListings.length > 0 &&
+
+          userListings.map((listing) => (
+            <div key={listing._id} className="bg-slate-100 p-3 rounded-lg my-2 gap-4">
+              <Link to={`/listing/${listing._id}`}>
+                <img src={listing.imageUrls[0]} alt={listing.title} className="w-full h-40 object-cover" />
+              </Link>
+              <Link to={`/listing/${listing._id}`}>
+                <p className="text-slate-700 font-semibold">{listing.title}</p>
+              </Link>
+              <p className="text-slate-700 font-semibold">{listing.price}</p>
+              <p className="text-slate-700 font-semibold">{listing.location}</p>
+
+              <div className="flex justify-between">
+                <Link to={`/edit-listing/${listing._id}`} className="text-green-700">Edit</Link>
+                <Link to={`/delete-listing/${listing._id}`} className="text-red-700">Delete</Link>
+              </div>
+            </div>
+          ))}
+
+      </div>
+
+
     </div>
   )
 }
