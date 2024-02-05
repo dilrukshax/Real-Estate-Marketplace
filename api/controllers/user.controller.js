@@ -1,6 +1,7 @@
 import bcryptjs from 'bcryptjs';
 import User from '../models/user.model.js';
 import { errorhandler } from '../utils/error.js';
+import Listing from '../models/listing.model.js';
 
 
 export const test = (req, res) => {
@@ -60,5 +61,22 @@ export const deleteUser = async (req, res, next) => {
     res.status(200).json({ message: 'User deleted successfully!' });
   } catch (error) {
     next(error);
+  } 
+};
+
+// get user's listings controller function to get all the listings of a user from the database
+
+export const getUsersListings = async (req, res, next) => {
+  if (req.user.userId === req.params.id){
+    try {
+      const listings = await Listing.find({ userRef: req.params.id });
+      res.status(200).json(listings);
+    } catch (error) {
+      next(error);
+    }
+
+  }else{
+    return next(errorhandler(401, 'You can only view your own listings!'));
   }
+   
 };
