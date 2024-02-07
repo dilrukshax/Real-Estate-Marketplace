@@ -8,12 +8,12 @@ Welcome to the Awesome Real Estate Marketplace, a robust web application designe
 - **Property Marketplace:** Effortlessly list, search, and explore a diverse range of properties.
 - **Detailed Property Views:** Comprehensive property details, including image galleries for a vivid experience.
 - **Inquiry Management:** Convenient contact forms for property-related inquiries.
-- **User and Admin Dashboards:** Personalized dashboards for users to manage listings and inquiries, and an admin dashboard for overall system control.
+
 
 ## Technologies Used
 - **Front-end:** Crafted with love using HTML, CSS, and JavaScript.
 - **Back-end:** Powered by the dynamic duo of Node.js and Express.js.
-- **Database:** MongoDB, ensuring seamless data management.
+- **Database:** MongoDB and Firebase, ensuring seamless data management.
 
 ## Installation
 
@@ -64,7 +64,18 @@ Welcome to the Awesome Real Estate Marketplace, a robust web application designe
 3. **Property Details:** Delve into property details, featuring images, descriptions, and contact information.
 4. **Inquiries:** Utilize the contact form to inquire about a specific property.
 5. **Dashboard Management:** Users can efficiently manage their listings and inquiries through the user dashboard.
-6. **Admin Privileges:** Admin users gain access to the admin dashboard for comprehensive management of users and properties.
+
+
+### Creating the User Interface using React and Tailwind CSS
+- The frontend of the application is built using React for dynamic user interfaces and Tailwind CSS for beautiful, responsive styling.
+
+### Implementing Authentication using JWT and Google OAuth
+- Users can sign up and sign in using their email address or Google account, ensuring a secure and seamless authentication process.
+- JWT-based authentication is implemented to manage user sessions and access control.
+
+### Building the Search Functionality with Sorting and Filtering Options
+- Users can search for properties by title, location, price, and other criteria, with options to sort search results by price, date, and more.
+- The search functionality includes filtering options based on property features such as offer type, parking availability, furnishing, etc.
 
 ## Contributing
 Contributions are enthusiastically welcomed! Feel free to open an issue or submit a pull request if you have any suggestions or discover issues that need attention.
