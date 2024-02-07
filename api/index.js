@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import userRoute from './routes/user.route.js';
 import authRoute from './routes/auth.route.js';
 import listingRoute from './routes/listing.route.js';
-
+import  Path  from 'Path';
 
 dotenv.config();
 
@@ -24,6 +24,10 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
     }
 );
 
+// Set the __dirname to the current working directory
+
+const__dirname = Path.resolve();
+
 // Start the server
 
 app.listen(3000, () => {
@@ -36,6 +40,13 @@ app.listen(3000, () => {
 app.use('/api/user', userRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/listing', listingRoute);
+
+app.use(express.static(Path.join(__dirname, '/client/dist')));
+
+app.get('*', (req, res) => {
+    res.sendFile
+    (Path.resolve(__dirname, 'client', 'dist', 'index.html'));
+});
 
 app.use((error, req, res, next) => {
     console.log(error);
