@@ -26,7 +26,7 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
 
 // Set the __dirname to the current working directory
 
-const__dirname = path.resolve();
+const __dirname = path.resolve();
 
 // Start the server
 
@@ -44,9 +44,8 @@ app.use('/api/listing', listingRoute);
 app.use(express.static(path.join(__dirname, '/client/dist')));
 
 app.get('*', (req, res) => {
-    res.sendFile
-    (path.resolve(__dirname, 'client', 'dist', 'index.html'));
-});
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+})
 
 app.use((error, req, res, next) => {
     console.log(error);
