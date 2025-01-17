@@ -19,6 +19,9 @@
 - **Dashboard Management**: Manage listings and inquiries efficiently with a user-friendly dashboard.
 - **Advanced Search**: Filter and sort properties by price, location, and other criteria.
 
+### Screenshot
+
+![Image](https://github.com/user-attachments/assets/a58738ed-37ec-4f1e-9bec-195553af9e0b)
 
 
 ### How to Set Up the Project
