@@ -1,4 +1,4 @@
-# 🏡 Awesome Real Estate Marketplace
+# Awesome Real Estate Marketplace
 
 <p align="center">
   <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node-dot-js&logoColor=white" alt="Node.js Badge" />
@@ -9,47 +9,29 @@
   <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS Badge" />
 </p>
 
-Welcome to the **Awesome Real Estate Marketplace**, a robust web application that redefines how we interact with real estate. Whether you're looking to buy, sell, or rent properties, this platform is your one-stop solution. Property owners can list properties with ease, while buyers and renters can explore, inquire, and make informed decisions.
 
----
+### Features
 
-## 🌟 Features
+- **User Authentication**: Secure registration and login system with support for Google OAuth.
+- **Property Marketplace**: Effortlessly list, search, and explore a wide range of properties.
+- **Detailed Property Views**: Vivid image galleries and comprehensive property descriptions.
+- **Inquiry Management**: Contact forms for easy property-related inquiries.
+- **Dashboard Management**: Manage listings and inquiries efficiently with a user-friendly dashboard.
+- **Advanced Search**: Filter and sort properties by price, location, and other criteria.
 
-- **🔒 User Authentication**: Secure registration and login system with support for Google OAuth.
-- **🏠 Property Marketplace**: Effortlessly list, search, and explore a wide range of properties.
-- **🖼️ Detailed Property Views**: Vivid image galleries and comprehensive property descriptions.
-- **📩 Inquiry Management**: Contact forms for easy property-related inquiries.
-- **📊 Dashboard Management**: Manage listings and inquiries efficiently with a user-friendly dashboard.
-- **🔍 Advanced Search**: Filter and sort properties by price, location, and other criteria.
 
----
 
-## 🛠️ Technologies Used
-
-### **Core Stack**
-- **Node.js**: Backend runtime environment.
-- **Express.js**: Backend framework for building APIs.
-- **React**: Dynamic and efficient user interfaces.
-- **MongoDB**: Database for seamless data management.
-
-### **Additional Technologies**
-- **Firebase**: For authentication and backend services.
-- **Tailwind CSS**: Modern utility-first CSS framework for responsive and stylish design.
-
----
-
-## ⚙️ How to Set Up the Project
+### How to Set Up the Project
 
 Follow these steps to set up and run the project locally:
 
-### 1️⃣ Clone the Repository
+#### Clone the Repository
 ```bash
 git clone https://github.com/your-username/awesome-real-estate-marketplace.git
 ```
 
----
 
-### 2️⃣ Setting Up the Backend
+####  Setting Up the Backend
 1. Navigate to the backend directory:
    ```bash
    cd backend
@@ -65,9 +47,8 @@ git clone https://github.com/your-username/awesome-real-estate-marketplace.git
    npm run dev
    ```
 
----
 
-### 3️⃣ Setting Up the Frontend
+#### Setting Up the Frontend
 1. Navigate to the frontend directory:
    ```bash
    cd frontend
@@ -83,23 +64,7 @@ git clone https://github.com/your-username/awesome-real-estate-marketplace.git
    npm run dev
    ```
 
----
-
-## 🚀 Usage
-
-### Step 1: Access the Application
-- Open your browser and visit [http://localhost:3000](http://localhost:3000) to explore the platform.
-
-### Step 2: User Actions
-- **Log In or Register**: Securely log in or register as a new user.
-- **Browse Properties**: Search, filter, and sort properties by title, location, price, and more.
-- **View Property Details**: Check detailed descriptions, images, and contact information.
-- **Inquire About Properties**: Use the contact form to send inquiries directly to property owners.
-- **Manage Listings**: Access your dashboard to view, edit, or delete your property listings.
-
----
-
-## 🤝 Contributing
+### Contributing
 
 Contributions are welcome! Follow these steps to contribute:
 
@@ -118,15 +83,4 @@ Contributions are welcome! Follow these steps to contribute:
    ```
 5. **Submit a pull request** for review.
 
----
-
-## 📜 License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-## 📞 Contact
-
-For any questions, feedback, or inquiries, reach out to [dilandilruksha0@gmail.com](mailto:dilandilruksha0@gmail.com).  
-Let’s build an awesome real estate community together! 🌟
+#
