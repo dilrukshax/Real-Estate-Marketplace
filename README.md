@@ -27,6 +27,8 @@
 
 ![Image](https://github.com/user-attachments/assets/9743f857-aa6c-429b-b665-ccffed1533ad)
 
+![Image](https://github.com/user-attachments/assets/51550c69-cb5b-418d-b8fc-28aff65dcb3e)
+
 
 
 ### How to Set Up the Project
